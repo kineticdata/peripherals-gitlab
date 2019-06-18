@@ -1,0 +1,30 @@
+== Gitlab Branch Create
+Creates a new branch in an existing GitLab project.
+
+=== Parameters
+[Project Group]
+  Path of the group where the project is located (defaults to the GitLab default group if not
+  provided).
+[Project Path]
+  Path of the project where the branch should be created.
+[Branch]
+  Name for the new branch.
+[Branch Source]
+  Name of another branch to use as a source for the new branch (can also use a commit SHA).
+
+=== Sample Configuration
+Project Group:             super-secret-group
+Project Path:              test-project
+Branch:                    master
+Branch Source:             develop
+
+=== Results
+This handler returns no results
+
+=== Detailed Description
+Creates a new branch using an existing branch or commit SHA in an existing GitLab project using a
+user's private token (obtained in GitLab under the intended user's 'Settings' => 'Account'). The
+source location for the new branch is found through providing the projects path (which is the
+project name provided in the URL - not necessarily the same as the readable name) and an existing
+branch or commit SHA. Once this is found, the new branch will be created with the given name and
+the previously found source. An empty result set will be returned on a successful branch creation.

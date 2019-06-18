@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskInfo version="1.0">
+  <info name="gitlab_location" description="URL location of the GitLab installation">https://gitlab.com</info>
+  <info name="private_token" type="encrypted" description="Private token for a user that has permission to the perform GitLab action."></info>
+  <info name="enable_debug_logging" description="'Yes' to enable debug logging.">No</info>
+</taskInfo>

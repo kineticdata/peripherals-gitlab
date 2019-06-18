@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="gitlab_webhook_create" name="GitLab Webhook Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates a new webhook for an existing GitLab project.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="project_group" label="Project Group" required="false"
+        tooltip="Path of the group where the project is located (defaults to the GitLab default group if not provided)."/>
+      <parameter id="project_path" label="Project Path" required="true"
+        tooltip="Path of the project where the branch should be created."/>
+      <parameter id="url" label="URL" required="true"
+        tooltip="URL for the webhook."/>
+      <parameter id="secret_token" label="Secret Token" required="false"
+        tooltip="Secret Token for the webhook (send with the webhook request in the X-Gitlab-Token header)."/>
+      <parameter id="enable_ssl" label="Enable SSL Verification" required="true"
+        tooltip="Do SSL verification when the webhook is triggered ('true' or 'false')."
+        menu="true,false"/>
+      <parameter id="trigger_events" label="Trigger Events" required="true"
+        tooltip="A comma separated list of events that will trigger the webhook. Options are: 'push','issues','merge','tag_push','note','job','pipeline','wiki'."/>
+    </parameters>
+    <handler name="gitlab_webhook_create" version="1">
+        <infos>
+          <info name="gitlab_location">&lt;%= @info['gitlab_location'] %&gt;</info>
+          <info name="private_token">&lt;%= @info['private_token'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="project_group">&lt;%= @parameters['project_group'] %&gt;</parameter>
+          <parameter name="project_path">&lt;%= @parameters['project_path'] %&gt;</parameter>
+          <parameter name="url">&lt;%= @parameters['url'] %&gt;</parameter>
+          <parameter name="secret_token">&lt;%= @parameters['secret_token'] %&gt;</parameter>
+          <parameter name="enable_ssl">&lt;%= @parameters['enable_ssl'] %&gt;</parameter>
+          <parameter name="trigger_events">&lt;%= @parameters['trigger_events'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results>
+      <result name="Webhook Id"/>
+    </results>
+</taskDefinition>

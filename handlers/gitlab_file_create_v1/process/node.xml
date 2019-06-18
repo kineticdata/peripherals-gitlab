@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="gitlab_file_create" name="GitLab File Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates a new file in an existing GitLab project.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="project_group" label="Project Group" required="false"
+        tooltip="Path of the group where the project and branch are located (defaults to the GitLab default group if not provided)."/>
+      <parameter id="project_path" label="Project Path" required="true"
+        tooltip="Path of the project where the branch is located."/>
+      <parameter id="branch" label="Branch" required="true"
+        tooltip="Branch that the file should be added to."/>
+      <parameter id="folder" label="Folder" required="false"
+        tooltip="Path to a folder to create the file in (if left blank, file will be created in the root folder)."/>
+      <parameter id="file_name" label="File Name" required="true"
+        tooltip="Name of the file (including the desired extension)."/>
+      <parameter id="file_contents" label="File Contents" required="true"
+        tooltip="Contents of the file."/>
+      <parameter id="commit_message" label="Commit Message" required="true"
+        tooltip="Commit message that the file will be added with."/>
+    </parameters>
+    <handler name="gitlab_file_create" version="1">
+        <infos>
+          <info name="gitlab_location">&lt;%= @info['gitlab_location'] %&gt;</info>
+          <info name="private_token">&lt;%= @info['private_token'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="project_group">&lt;%= @parameters['project_group'] %&gt;</parameter>
+          <parameter name="project_path">&lt;%= @parameters['project_path'] %&gt;</parameter>
+          <parameter name="branch">&lt;%= @parameters['branch'] %&gt;</parameter>
+          <parameter name="folder">&lt;%= @parameters['folder'] %&gt;</parameter>
+          <parameter name="file_name">&lt;%= @parameters['file_name'] %&gt;</parameter>
+          <parameter name="file_contents">&lt;%= @parameters['file_contents'] %&gt;</parameter>
+          <parameter name="commit_message">&lt;%= @parameters['commit_message'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

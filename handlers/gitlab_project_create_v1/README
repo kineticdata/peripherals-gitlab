@@ -1,0 +1,39 @@
+== Gitlab Project Create
+Creates a new project in GitLab.
+
+=== Parameters
+[Name]
+  Readable name for the new project (if not provided the path will determine the name).
+[Path]
+  URL path for the new project (if not provided the name will determine the path).
+[Description]
+  Description of the new project.
+[Group]
+  Path for the group that the project should be placed in.
+[Default Branch]
+  Default branch for the project (if not provided, default is master).
+[Visibility]
+  Visibility options are 'private', 'internal', or 'public'. Will default to the group or
+  organization default if not provided.
+
+=== Sample Configuration
+Name:                       My Test Project
+Path:                       test-project
+Description:                A test repository created by test.user
+Group:                      super-secret-group
+Default Branch:             develop
+Visibility:                 internal
+
+=== Results
+[Project Id]
+  If the project is succesfully created, the id for the newly created project
+
+=== Detailed Description
+Creates a new project in the given GitLab instance using a user's private token (obtained in GitLab
+under the intended user's 'Settings' => 'Account') and information about the new project. If the
+new project should be placed under an existing group, the handler first has to do a search to
+retrieve the id for a group matching the inputted path. A POST object is then created using the
+name/path (at least one is required to be provided), the group id (if a group was provdied), as well
+as any of the remaining input parameters. If any errors are caught on the creation attempt they will
+be caught and raised along with the error code and message. If there are no errors, an id for the
+newly created project will be returned.

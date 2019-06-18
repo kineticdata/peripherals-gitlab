@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="gitlab_branch_create" name="GitLab Branch Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates a new branch in an existing GitLab project.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="project_group" label="Project Group" required="false"
+        tooltip="Path of the group where the project is located (defaults to the GitLab default group if not provided)."/>
+      <parameter id="project_path" label="Project Path" required="true"
+        tooltip="Path of the project where the branch should be created."/>
+      <parameter id="branch" label="Branch" required="true"
+        tooltip="Name for the new branch."/>
+      <parameter id="branch_source" label="Branch Source" required="false"
+        tooltip="Name of another branch to use as a source for the new branch (can also use a commit SHA)."/>
+    </parameters>
+    <handler name="gitlab_branch_create" version="1">
+        <infos>
+          <info name="gitlab_location">&lt;%= @info['gitlab_location'] %&gt;</info>
+          <info name="private_token">&lt;%= @info['private_token'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="project_group">&lt;%= @parameters['project_group'] %&gt;</parameter>
+          <parameter name="project_path">&lt;%= @parameters['project_path'] %&gt;</parameter>
+          <parameter name="branch">&lt;%= @parameters['branch'] %&gt;</parameter>
+          <parameter name="branch_source">&lt;%= @parameters['branch_source'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

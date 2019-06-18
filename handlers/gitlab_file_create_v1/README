@@ -1,0 +1,41 @@
+== Gitlab File Create
+Creates a new file in an existing GitLab project.
+
+=== Parameters
+[Project Group]
+  Path of the group where the project and branch are located (defaults to the GitLab default group
+  if not provided).
+[Project Path]
+  Path of the project where the branch is located.
+[Branch]
+  Branch that the file should be added to.
+[Folder]
+  Path to a folder to create the file in (if left blank, file will be created in the root folder).
+[File Name]
+  Name of the file (including the desired extension).
+[File Contents]
+  Contents of the file.
+[Commit Message]
+  Commit message that the file will be added with.
+
+=== Sample Configuration
+Project Group:             super-secret-group
+Project Path:              test-project
+Branch:                    master
+Folder:                    lib
+File Name:                 README.md
+File Contents:             A README file inside the lib directory for a test project
+Commit Message:            Adding a README file
+
+=== Results
+This handler returns no results
+
+=== Detailed Description
+Creates a new file in an existing GitLab project and branch using a user's private token (obtained
+in GitLab under the inteded user's 'Settings' => 'Account') and the location, name, and contents of
+the file that should be added. The project the file should be added to is found through providing
+the projects path (which is the project name provided in the URL - not necessarily the same as the
+readable name) and the project group (if it is in something other than the default group). The file
+and the location it should be placed at is built based upon the branch, folder, file name, and file
+contents parameters. If the branch provided doesn't currently exist, it will be created upon
+successful addition of the file. An empty result set will be returned on successful file creation.

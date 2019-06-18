@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="gitlab_branch_protect" name="GitLab Branch Protect" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Protects a specified branch in an existing GitLab project.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="project_group" label="Project Group" required="false"
+        tooltip="Path of the group where the project and branch are located (defaults to the GitLab default group if not provided)."/>
+      <parameter id="project_path" label="Project Path" required="true"
+        tooltip="Path of the project where the branch is located."/>
+      <parameter id="branch" label="Branch" required="true"
+        tooltip="Name of the branch."/>
+      <parameter id="allowed_to_push" label="Allowed To Push" required="false"
+        tooltip="Who should be allowed to push to the branch: 'none','masters','developers'."/>
+      <parameter id="allowed_to_merge" label="Allowed To Merge" required="false"
+        tooltip="Who should be allowed to merge to the branch: 'none','masters','developers'."/>
+    </parameters>
+    <handler name="gitlab_branch_protect" version="1">
+        <infos>
+          <info name="gitlab_location">&lt;%= @info['gitlab_location'] %&gt;</info>
+          <info name="private_token">&lt;%= @info['private_token'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="project_group">&lt;%= @parameters['project_group'] %&gt;</parameter>
+          <parameter name="project_path">&lt;%= @parameters['project_path'] %&gt;</parameter>
+          <parameter name="branch">&lt;%= @parameters['branch'] %&gt;</parameter>
+          <parameter name="allowed_to_push">&lt;%= @parameters['allowed_to_push'] %&gt;</parameter>
+          <parameter name="allowed_to_merge">&lt;%= @parameters['allowed_to_merge'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results/>
+</taskDefinition>

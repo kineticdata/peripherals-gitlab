@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="gitlab_project_create" name="GitLab Project Create" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>Creates a new project in GitLab.</description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+      <parameter id="name" label="Name" required="false"
+        tooltip="Readable name for the new project (if not provided the path will determine the name)."/>
+      <parameter id="path" label="Path" required="false"
+        tooltip="URL path for the new project (if not provided the name will determine the path)."/>
+      <parameter id="description" label="Description" required="false"
+        tooltip="Description of the new project."/>
+      <parameter id="group" label="Group" required="false"
+        tooltip="Path for the group that the project should be placed in."/>
+      <parameter id="default_branch" label="Default Branch" required="false"
+        tooltip="Default branch for the project (if not provided, default is master)."/>
+      <parameter id="visibility" label="Visibility" required="false"
+        tooltip="Visibility options are 'private', 'internal', or 'public'. Will default to the group or organization default if not provided."/>
+    </parameters>
+    <handler name="gitlab_project_create" version="1">
+        <infos>
+          <info name="gitlab_location">&lt;%= @info['gitlab_location'] %&gt;</info>
+          <info name="private_token">&lt;%= @info['private_token'] %&gt;</info>
+          <info name="enable_debug_logging">&lt;%= @info['enable_debug_logging'] %&gt;</info>
+        </infos>
+        <parameters>
+          <parameter name="name">&lt;%= @parameters['name'] %&gt;</parameter>
+          <parameter name="path">&lt;%= @parameters['path'] %&gt;</parameter>
+          <parameter name="description">&lt;%= @parameters['description'] %&gt;</parameter>
+          <parameter name="group">&lt;%= @parameters['group'] %&gt;</parameter>
+          <parameter name="default_branch">&lt;%= @parameters['default_branch'] %&gt;</parameter>
+          <parameter name="visibility">&lt;%= @parameters['visibility'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results>
+      <result name="Project Id"/>
+    </results>
+</taskDefinition>

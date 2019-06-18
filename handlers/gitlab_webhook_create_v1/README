@@ -1,0 +1,39 @@
+== Gitlab Webhook Create
+Creates a new webhook for an existing GitLab project.
+
+=== Parameters
+[Project Group]
+  Path of the group where the project is located (defaults to the GitLab default group if not
+  provided).
+[Project Path]
+  Path of the project where the branch should be created.
+[URL]
+  URL for the webhook.
+[Secret Token]
+  Secret Token for the webhook (sent with the webhook request in the X-Gitlab-Token header).
+[Enable SSL Verification]
+  Do SSL verification when the webhook is triggered ('true' or 'false').
+[Trigger Events]
+  A comma separated list of events that will trigger the webhook. Options are: 'push','issues',
+  'merge','tag_push','note','job','pipeline','wiki'.
+
+=== Sample Configuration
+Project Group:             super-secret-group
+Project Path:              test-project
+URL:                       http://integrations.acme.com/test-project
+Secret Token:              123456789
+Enable SSL Verification:   false
+Trigger Events:            push,merge
+
+=== Results
+[Webhook Id]
+  If the webhook was successfully created, the id of the newly created webhook.
+
+=== Detailed Description
+Creates a new webhook using a user's private token (obtained in GitLab under the intended user's
+'Settings' => 'Account') and the new webhook information. The URL and Secret Token are values that
+are used to build and send the request when a GitLab action fires the webhook (a secret token is not
+required) while trigger events determine when the webhook is triggered. For more information on
+configuring webhooks in GitLab, see GitLab's general webhook documentation
+(https://gitlab.com/help/user/project/integrations/webhooks). If the webhook is successfully created,
+the newly created webhook id will be returned in the results.
