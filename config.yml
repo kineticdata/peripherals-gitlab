@@ -1,0 +1,9 @@
+---
+repo-name: peripherals-gitlab
+categories:
+- DevOps
+display-name: GitLab
+manufacture: 
+product: Gitlab
+description: Handlers that interact with the Gitlab service (both Gitlab and self-hosted
+  installations).
